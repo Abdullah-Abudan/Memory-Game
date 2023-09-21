@@ -18,43 +18,43 @@ controlBtns.addEventListener("click", function showPrompt() {
     showCancelButton: true,
     confirmButtonText: "Save",
     cancelButtonText: "Cancel",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      const val = result.value;
-      if (val !== "" && val !== null) {
-        Name.innerText = val;
-        // Welcome the user Alert
-        Swal.fire({
-          title: `Welcome ${val}!`,
-          icon: "success",
-        })
-        // Save the user's name to local storage
-        localStorage.setItem("userName", val);
-      } else {
-        Swal.fire({
-          title: "Please enter a non-empty value.",
-          icon: "warning",
-        }).then(() => {
-          showPrompt();
-        });
+  })
+    .then((result) => {
+      if (result.isConfirmed) {
+        const val = result.value;
+        if (val !== "" && val !== null) {
+          Name.innerText = val;
+          // Welcome the user Alert
+          Swal.fire({
+            title: `Welcome ${val}!`,
+            icon: "success",
+          });
+          // Save the user's name to local storage
+          localStorage.setItem("userName", val);
+        } else {
+          Swal.fire({
+            title: "Please enter a non-empty value.",
+            icon: "warning",
+          }).then(() => {
+            showPrompt();
+          });
+        }
       }
-    }
-    controlBtns.remove();
-    // Start the timer when the game begins
-    startTimer();
-
-  }).then(() => {
-    // Start Showing All Blocks After Welcome Message Then Hide All Of Them
-    setTimeout(() => {
-    blocksChildren.forEach((block) => {
-      block.classList.add("is-flipped");
+      controlBtns.remove();
+      // Start the timer when the game begins
+      startTimer();
+    }).then(() => {
+      // Start Showing All Blocks After Welcome Message Then Hide All Of Them
       setTimeout(() => {
-        block.classList.remove("is-flipped");
+        blocksChildren.forEach((block) => {
+          block.classList.add("is-flipped");
+          setTimeout(() => {
+            block.classList.remove("is-flipped");
+          }, 1500);
+        });
       }, 1500);
-    });      
-    },1500)
-    // End Showing All Blocks After Welcome Message Then Hide All Of Them
-  });
+      // End Showing All Blocks After Welcome Message Then Hide All Of Them
+    });
 });
 
 /*Note: querySelectorAll method returns a (NodeList), which is similar to an array but doesn't have a keys() method. To convert it into an array use Array.from(). */
@@ -97,7 +97,7 @@ function shuffle(array) {
     currentIndex--;
     [array[currentIndex], array[randomIndex]] = [array[randomIndex],array[currentIndex]];
   }
-  return array; 
+  return array;
 }
 
 // Flip Block Function
@@ -132,8 +132,8 @@ function stopClicking() {
 }
 
 // Check Match Block Function
+let tries = document.getElementById("tries");
 function checkMatchedBlocks(firstBlock, secondBlock) {
-  let tries = document.getElementById("tries");
   if (firstBlock.dataset.technology === secondBlock.dataset.technology) {
     firstBlock.classList.remove("is-flipped");
     secondBlock.classList.remove("is-flipped");
@@ -143,6 +143,10 @@ function checkMatchedBlocks(firstBlock, secondBlock) {
     setTimeout(() => {
       document.getElementById("success").play();
     }, 300);
+
+    setTimeout(() => {
+      checkForWin();
+    }, duration);
   } else {
     tries.innerText = parseInt(tries.innerText) + 1;
 
@@ -156,15 +160,13 @@ function checkMatchedBlocks(firstBlock, secondBlock) {
 const backgroundMusic = document.getElementById("background-music");
 // Function to play the background music
 function playBackgroundMusic() {
-  backgroundMusic.play()
+  backgroundMusic.play();
 }
 
 // Function to pause the background music
 function pauseBackgroundMusic() {
   backgroundMusic.pause();
 }
-
-
 // Function to toggle the background music
 function toggleBackgroundMusic() {
   const toggleButton = document.querySelector("#toggle-music img");
@@ -179,7 +181,6 @@ function toggleBackgroundMusic() {
 // Initialize the toggle button click event handler
 const toggleButton = document.getElementById("toggle-music");
 toggleButton.addEventListener("click", toggleBackgroundMusic);
-
 
 // Timer Function
 let timer = document.getElementById("timer");
@@ -196,4 +197,42 @@ function startTimer() {
 
     timer.innerText = `Time: ${formattedMinutes}:${formattedSeconds}`;
   }, 1000);
+}
+
+// Function to check if all blocks are matched
+function checkForWin() {
+  const matchedBlocks = document.querySelectorAll(".memory-game-blocks .has-match");
+
+  if (blocksChildren.length === matchedBlocks.length) {
+    // All blocks have been matched, play win audio
+    const winSound = document.getElementById("win-sound");
+    winSound.play();
+    // Show a success message
+    Swal.fire({
+      title: `Congratulations ${Name.innerText}!`,
+      text: "You have completed the Memory Game!",
+      icon: "success",
+    });
+
+    // Reset the game after a delay (e.g., 3 seconds)
+    setTimeout(() => {
+      resetGame();
+    }, 4000);
+  }
+}
+
+// Function to reset the game
+function resetGame() {
+  // Remove the "has-match" class from all blocks
+  blocksChildren.forEach((block) => {
+    block.classList.remove("has-match");
+  });
+
+  // Shuffle and reset the order of blocks
+  shuffle(orderRange);
+
+  // Reset timer
+  seconds = 0;
+  tries = 0;
+  timer.innerText = "Time: 00:00";
 }
