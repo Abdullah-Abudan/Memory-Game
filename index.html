@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./Images/icon.png">
+</head>
+
+<body>
+    <div class="control-buttons">
+        <span id="start">Start The Game</span>
+    </div>
+
+    <div class="info-container">
+        <div class="name">
+            Name: <span id="name"></span>
+        </div>
+        <button id="toggle-music">
+            <img src="./Images/mute.png" alt="sound">
+        </button>
+        <div id="timer"></div>
+
+        <div class="tries">
+            Wrong Tries: <span id="tries">0</span>
+        </div>
+    </div>
+
+    <div class="memory-game-blocks">
+        <div class="game-block" data-technology="Bootstrap">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/Bootstrap.svg" alt="">
+            </div>
+        </div>
+        <div class="game-block" data-technology="Bootstrap">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/Bootstrap.svg" alt="">
+            </div>
+        </div>
+
+        <div class="game-block" data-technology="CodePen">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/CodePen-Dark.svg" alt="">
+            </div>
+        </div>
+        <div class="game-block" data-technology="CodePen">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/CodePen-Dark.svg" alt="">
+            </div>
+        </div>
+
+        <div class="game-block" data-technology="Figma">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/Figma-Dark.svg" alt="">
+            </div>
+        </div>
+        <div class="game-block" data-technology="Figma">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/Figma-Dark.svg" alt="">
+            </div>
+        </div>
+
+        <div class="game-block" data-technology="Git">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/Git.svg" alt="">
+            </div>
+        </div>
+        <div class="game-block" data-technology="Git">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/Git.svg" alt="">
+            </div>
+        </div>
+
+        <div class="game-block" data-technology="Github">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/Github-Dark.svg" alt="">
+            </div>
+        </div>
+        <div class="game-block" data-technology="Github">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/Github-Dark.svg" alt="">
+            </div>
+        </div>
+
+        <div class="game-block" data-technology="HTML">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/HTML.svg" alt="">
+            </div>
+        </div>
+        <div class="game-block" data-technology="HTML">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/HTML.svg" alt="">
+            </div>
+        </div>
+
+        <div class="game-block" data-technology="TypeScript">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/TypeScript.svg" alt="">
+            </div>
+        </div>
+        <div class="game-block" data-technology="TypeScript">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/TypeScript.svg" alt="">
+            </div>
+        </div>
+
+        <div class="game-block" data-technology="Illustrator">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/Illustrator.svg" alt="">
+            </div>
+        </div>
+        <div class="game-block" data-technology="Illustrator">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/Illustrator.svg" alt="">
+            </div>
+        </div>
+
+        <div class="game-block" data-technology="JavaScript">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/JavaScript.svg" alt="">
+            </div>
+        </div>
+        <div class="game-block" data-technology="JavaScript">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/JavaScript.svg" alt="">
+            </div>
+        </div>
+
+        <div class="game-block" data-technology="Redux">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/Redux.svg" alt="">
+            </div>
+        </div>
+        <div class="game-block" data-technology="Redux">
+            <div class="face front"></div>
+            <div class="face back">
+                <img decoding="async" src="./Images/Redux.svg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 <a href="https://github.com/Abdullah-Abudan" target="_blank">Abdullah</a>  - Memory Game.&nbsp; All Rights Reserved.</p>
+    </footer>
+
+    <audio id="background-music" src="Audio/BGMusic.mp3" preload="auto" loop></audio>
+    <audio id="success" src="Audio/success.mp3" preload="auto"></audio>
+    <audio id="flip" src="Audio/flipcard.mp3" preload="auto"></audio>
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>
