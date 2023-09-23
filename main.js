@@ -231,8 +231,10 @@ function resetGame() {
   // Shuffle and reset the order of blocks
   shuffle(orderRange);
 
+  // Reset tries
+  tries.innerText = "0";
+
   // Reset timer
   seconds = 0;
-  tries = 0;
   timer.innerText = "Time: 00:00";
 }
